@@ -1,0 +1,43 @@
+<!-- Le contenu principal est affiché seulement quand le pays a été trouvé. -->
+<ng-container *ngIf="selectedCountry as country; else errorState">
+  <section aria-labelledby="country-title">
+    <div class="center">
+      <h1 id="country-title">{{ country.country }}</h1>
+    </div>
+    <dl class="split">
+      <div>
+        <dt>Nombre de participations</dt>
+        <dd>{{ country.participations.length }}</dd>
+      </div>
+      <div>
+        <dt>Nombre total de médailles</dt>
+        <dd>{{ totalMedals }}</dd>
+      </div>
+      <div>
+        <dt>Nombre total d'athlètes</dt>
+        <dd>{{ totalAthletes }}</dd>
+      </div>
+    </dl>
+    <!-- Le composant enfant s'occupe uniquement de dessiner le graphique. -->
+    <div class="chart-container wrapper-container">
+      <div class="container">
+        <app-line-chart
+          [labels]="years"
+          [values]="medals"
+        ></app-line-chart>
+        <h2>Évolution des médailles par date</h2>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #errorState>
+  <!-- Une erreur réseau est affichée à l'utilisateur au lieu de rester silencieuse. -->
+  <p *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
+</ng-template>
+
+<div class="center">
+  <!-- Le lien utilise explicitement la route d'accueil. -->
+  <a routerLink="/">Retour à l'accueil</a>
+</div>
+

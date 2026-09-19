@@ -32,3 +32,6 @@
 (`src/app/pages/home/home.component.ts:22` et `src/app/pages/country/country.component.ts:27`).
 
 - Emplacement des fichiers : aucun service n'a été trouvé dans `src/app/components`; il n'y a donc pas de service mal placé à signaler actuellement.
+
+ARCHI
+1 src/app crée component 
